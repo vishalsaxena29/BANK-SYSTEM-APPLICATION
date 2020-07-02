@@ -1,0 +1,130 @@
+
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
+
+
+class Ui_Dialog(object):
+
+    def MessagesProfile(self, title, message):
+        mssg = QMessageBox()
+        mssg.setWindowTitle(title)
+        mssg.setIcon(QMessageBox.Warning)
+        mssg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        mssg.setText(message)
+        mssg.buttonClicked.connect(self.buttonClickeed)
+        mssg.exec_()
+
+    def buttonClickeed(self, me):
+        if me.text() == QMessageBox.Ok:
+            print('quite')
+            quit()
+
+    def WithdrawalCancle(self):
+        from services import Ui_BANK_SERVICES
+        print('WithdrawalCancle')
+        self.MainWindow = QtWidgets.QMainWindow()
+        self.ui = Ui_BANK_SERVICES()
+        self.ui.setupUi(self.MainWindow)
+        self.MainWindow.show()
+
+    def setupUi(self, Dialog):
+        Dialog.setObjectName("Dialog")
+        Dialog.resize(460, 408)
+        Dialog.setStyleSheet("QDialog{background-color:qlineargradient(spread:pad, x1:0.438222, y1:0.0743182, x2:0.418961, y2:1, stop:0.413793 rgba(59, 136, 89, 255), stop:1 rgba(255, 255, 255, 255));}")
+        self.Title = QtWidgets.QLabel(Dialog)
+        self.Title.setGeometry(QtCore.QRect(10, 0, 431, 91))
+        font = QtGui.QFont()
+        font.setPointSize(26)
+        font.setBold(True)
+        font.setUnderline(True)
+        font.setWeight(75)
+        self.Title.setFont(font)
+        self.Title.setAlignment(QtCore.Qt.AlignCenter)
+        self.Title.setObjectName("Title")
+        self.label = QtWidgets.QLabel(Dialog)
+        self.label.setGeometry(QtCore.QRect(70, 110, 121, 31))
+        font = QtGui.QFont()
+        font.setPointSize(17)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label.setFont(font)
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
+        self.label.setObjectName("label")
+        self.label_2 = QtWidgets.QLabel(Dialog)
+        self.label_2.setGeometry(QtCore.QRect(70, 150, 121, 41))
+        font = QtGui.QFont()
+        font.setPointSize(17)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_2.setFont(font)
+        self.label_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_2.setObjectName("label_2")
+        self.label_3 = QtWidgets.QLabel(Dialog)
+        self.label_3.setGeometry(QtCore.QRect(50, 200, 181, 41))
+        font = QtGui.QFont()
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_3.setFont(font)
+        self.label_3.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_3.setObjectName("label_3")
+        self.label_4 = QtWidgets.QLabel(Dialog)
+        self.label_4.setGeometry(QtCore.QRect(100, 250, 101, 41))
+        font = QtGui.QFont()
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_4.setFont(font)
+        self.label_4.setObjectName("label_4")
+        self.lineEdit = QtWidgets.QLineEdit(Dialog)
+        self.lineEdit.setGeometry(QtCore.QRect(270, 110, 113, 21))
+        self.lineEdit.setObjectName("lineEdit")
+        self.lineEdit_2 = QtWidgets.QLineEdit(Dialog)
+        self.lineEdit_2.setGeometry(QtCore.QRect(270, 160, 113, 21))
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.lineEdit_3 = QtWidgets.QLineEdit(Dialog)
+        self.lineEdit_3.setGeometry(QtCore.QRect(270, 210, 113, 21))
+        self.lineEdit_3.setObjectName("lineEdit_3")
+        self.lineEdit_4 = QtWidgets.QLineEdit(Dialog)
+        self.lineEdit_4.setGeometry(QtCore.QRect(270, 260, 113, 21))
+        self.lineEdit_4.setObjectName("lineEdit_4")
+        self.pushButton = QtWidgets.QPushButton(Dialog)
+        self.pushButton.setGeometry(QtCore.QRect(90, 310, 113, 32))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton.setFont(font)
+        self.pushButton.setObjectName("pushButton")
+        self.pushButton_3 = QtWidgets.QPushButton(Dialog)
+        self.pushButton_3.setGeometry(QtCore.QRect(270, 310, 120, 32))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_3.setFont(font)
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.pushButton_3.clicked.connect(self.WithdrawalCancle)
+
+        self.retranslateUi(Dialog)
+        QtCore.QMetaObject.connectSlotsByName(Dialog)
+
+    def retranslateUi(self, Dialog):
+        _translate = QtCore.QCoreApplication.translate
+        Dialog.setWindowTitle(_translate("Dialog", "UPDATE WINDOW"))
+        self.Title.setText(_translate("Dialog", "BANK PROFILE MODIFY WINDOW"))
+        self.label.setText(_translate("Dialog", "NAME "))
+        self.label_2.setText(_translate("Dialog", "EMAIL"))
+        self.label_3.setText(_translate("Dialog", "MOBILE NO"))
+        self.label_4.setText(_translate("Dialog", "PASSWORD"))
+        self.pushButton.setText(_translate("Dialog", "UPDATE"))
+        self.pushButton_3.setText(_translate("Dialog", "CANCEL"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Dialog = QtWidgets.QDialog()
+    ui = Ui_Dialog()
+    ui.setupUi(Dialog)
+    Dialog.show()
+    sys.exit(app.exec_())
